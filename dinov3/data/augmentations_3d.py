@@ -44,9 +44,7 @@ class DataAugmentation3d(object):
         gram_teacher_no_distortions=False,
         local_crops_subset_of_global_crops=False,
         patch_size=16,
-        horizontal_flips=True,
-        mean=0,
-        std=1,
+        flips=True, # renaming to flips, as we flip aroud all spatial axis equally
     ):
         '''
         This class is a wrapper around the monai transforms to apply data augmentation to a 3D MRI image.
@@ -96,7 +94,7 @@ class DataAugmentation3d(object):
         logger.info(f"local_crops_subset_of_global_crops: {local_crops_subset_of_global_crops}")
         logger.info(f"patch_size if local_crops_subset_of_global_crops: {patch_size}")
         logger.info(f"share_color_jitter: {share_color_jitter}")
-        logger.info(f"horizontal flips: {horizontal_flips}")
+        logger.info(f"flips : {flips}")
         logger.info("###################################")
 
         global_crop_max_size = max(global_crops_size, gram_teacher_crops_size if gram_teacher_crops_size else 0)
@@ -109,7 +107,7 @@ class DataAugmentation3d(object):
 
         self.geometric_augmentation_global = Compose(
             [
-                RandFlip(prob=0.5 if horizontal_flips else 0.0)
+                RandFlip(prob=0.5 if flips else 0.0)
             ]
         )
 
@@ -146,7 +144,7 @@ class DataAugmentation3d(object):
                 RandBiasField(prob=0.1),
                 RandHistogramShift(prob=0.1),
                 ToTensor(),
-                RandFlip(prob=0.5 if horizontal_flips else 0.0)
+                RandFlip(prob=0.5 if flips else 0.0)
             ]
         )
 
