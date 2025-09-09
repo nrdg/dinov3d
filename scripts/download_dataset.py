@@ -5,8 +5,8 @@ import argparse
 from tqdm import tqdm
 import boto3
 
-dataset_json = "./dinov3mridataset.json"
-mini_dataset_json = "./dinov3mridataset_mini.json"
+dataset_json = "../dinov3mridataset.json"
+mini_dataset_json = "../dinov3mridataset_mini.json"
 
 s3_bucket = "dinov2preprocessedmridataset"
 s3_client = boto3.client('s3')
@@ -23,7 +23,7 @@ def main(args):
     with open(dataset_pth, "r") as f:
         dataset = json.load(f)
 
-    for item in dataset:
+    for item in tqdm(dataset):
         file_pth = item["image"]
         try:
             download_file(file_pth, args.out_dir)
