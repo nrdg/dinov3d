@@ -63,7 +63,7 @@ gram:
   loss_weight_schedule: null  # (dict): If not None, use a schedule for the loss weight instead of `loss_weight`
 train:
   batch_size_per_gpu: 64
-  dataset_path: Local3d:/path/to/your/3d/dataset
+  dataset_path: Local3d:/path/to/your/3d/dataset # XXX maybe change to just be path
   dataset_json: /path/to/your/dataset.json
   data_config: null
   output_dir: .
@@ -162,14 +162,14 @@ crops:
   share_color_jitter: false
   flips: true
   gram_teacher_no_distortions: false  # If True, no distortions are applied to gram teacher crops
-  rgb_mean:
-  - 0.485
-  - 0.456
-  - 0.406
-  rgb_std:
-  - 0.229
-  - 0.224
-  - 0.225
+  # rgb_mean: XXX this is not used for 3d as we don't do color jitter
+  # - 0.485
+  # - 0.456
+  # - 0.406
+  # rgb_std:
+  # - 0.229
+  # - 0.224
+  # - 0.225
 evaluation:
   eval_period_iterations: 12500
   low_freq_every: 5

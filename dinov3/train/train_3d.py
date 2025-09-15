@@ -41,7 +41,7 @@ from monai.data import PersistentDataset
 from dinov3.logging import MetricLogger, setup_logging
 from dinov3.train.cosine_lr_scheduler import CosineScheduler, linear_warmup_cosine_decay
 from dinov3.train.multidist_meta_arch import MultiDistillationMetaArch
-from dinov3.train.ssl_meta_arch import SSLMetaArch
+from dinov3.train.ssl_meta_arch_3d import SSLMetaArch_3d
 
 assert torch.__version__ >= (2, 1)
 torch.backends.cuda.matmul.allow_tf32 = True  # pytorch 1.12 sets this to false by default
@@ -322,11 +322,6 @@ def build_data_loader_from_cfg(
                                 cache_dir=None,
                                 transform=model.build_data_augmentation_dino_3d(cfg)
                                 ) #this probably needs to be updated
-    # dataset = make_dataset(
-    #     dataset_str=dataset_path,
-    #     transform=model.build_data_augmentation_dino(cfg),
-    #     target_transform=lambda _: (),
-    # )
 
     if isinstance(dataset, torch.utils.data.IterableDataset):
         sampler_type = SamplerType.INFINITE
@@ -616,10 +611,15 @@ def main(argv=None):
             output=os.path.join(os.path.abspath(args.output_dir), "nan_logs"),
             name="nan_logger",
         )
+
+    if meta_arch == "MultiDistillationMetaArch":
+        raise NotImplementedError("MultiDistillation not Implemented for 3d")
+
     meta_arch = {
-        "SSLMetaArch": SSLMetaArch,
+        "SSLMetaArch": SSLMetaArch_3d, # XXX we maybe want to make this a different arg, ie "SSLMetaArch_3d": SSLMetaArch_3d
         "MultiDistillationMetaArch": MultiDistillationMetaArch,
-    }.get(cfg.MODEL.META_ARCHITECTURE, None)
+    }.get(cfg.MODEL.META_ARCHITECTURE, None) # why did they do this lol
+
     if meta_arch is None:
         raise ValueError(f"Unknown MODEL.META_ARCHITECTURE {cfg.MODEL.META_ARCHITECTURE}")
     logger.info(f"Making meta arch {meta_arch.__name__}")
