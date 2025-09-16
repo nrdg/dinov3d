@@ -63,7 +63,7 @@ gram:
   loss_weight_schedule: null  # (dict): If not None, use a schedule for the loss weight instead of `loss_weight`
 train:
   batch_size_per_gpu: 64
-  dataset_path: Local3d:/path/to/your/3d/dataset # XXX maybe change to just be path
+  dataset_path: /path/to/your/3d/dataset # XXX maybe change to just be path
   dataset_json: /path/to/your/dataset.json
   data_config: null
   output_dir: .

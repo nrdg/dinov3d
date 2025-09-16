@@ -18,7 +18,7 @@ from dinov3.data import DataAugmentationDINO
 from dinov3.fsdp.ac_compile_parallelize import ac_compile_parallelize
 from dinov3.layers.dino_head import DINOHead
 from dinov3.loss import DINOLoss, GramLoss, KoLeoLoss, KoLeoLossDistributed, iBOTPatchLoss
-from dinov3.models import build_model_from_cfg
+from dinov3.models import build_model_from_cfg_3d
 from dinov3.train.cosine_lr_scheduler import linear_warmup_cosine_decay
 from dinov3.train.param_groups import fuse_params_groups, get_params_groups_with_decay_fsdp
 from dinov3.utils import count_parameters
@@ -49,10 +49,10 @@ class SSLMetaArch_3d(nn.Module):
         teacher_model_dict = dict()
         gram_model_dict = dict()
 
-        student_backbone, teacher_backbone, embed_dim = build_model_from_cfg(cfg)
+        student_backbone, teacher_backbone, embed_dim = build_model_from_cfg_3d(cfg) # XXX
         torch.cuda.empty_cache()
         gc.collect()
-        gram_backbone, _ = build_model_from_cfg(cfg, only_teacher=True)
+        gram_backbone, _ = build_model_from_cfg_3d(cfg, only_teacher=True)
         logger.info(f"Number of parameters: {count_parameters(student_backbone)}")
         student_model_dict["backbone"] = student_backbone
         teacher_model_dict["backbone"] = teacher_backbone
