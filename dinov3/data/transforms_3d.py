@@ -1,6 +1,8 @@
 import monai
 import torch
 from monai.transforms import RandomizableTransform
+import numpy as np
+from typing import Union
 
 class RandomResizedCrop3d(RandomizableTransform):
     def __init__(self,
@@ -15,7 +17,7 @@ class RandomResizedCrop3d(RandomizableTransform):
         self.antialias = antialias
 
     def __call__(self,
-                 img: NdarrayOrTensor,
+                 img: Union[np.ndarray, torch.Tensor],
                  spacing: tuple,
                  ):
         '''
