@@ -334,7 +334,7 @@ def vit3d_small(patch_size=16, **kwargs):
         embed_dim=384,
         depth=12,
         num_heads=6,
-        ffn_ratio=4
+        ffn_ratio=4,
         **kwargs,
     )
 
@@ -344,7 +344,7 @@ def vit3d_base(patch_size=16, **kwargs):
         embed_dim=768,
         depth=12,
         num_heads=12,
-        ffn_ratio=4
+        ffn_ratio=4,
         **kwargs,
     )
 
@@ -354,7 +354,7 @@ def vit3d_large(patch_size=16, **kwargs):
         embed_dim=1024,
         depth=24,
         num_heads=16,
-        ffn_ratio=4
+        ffn_ratio=4,
         **kwargs,
     )
 
@@ -364,7 +364,7 @@ def vit3d_huge2(patch_size=16, **kwargs):
         embed_dim=1280,
         depth=32,
         num_heads=20,
-        ffn_ratio=4
+        ffn_ratio=4,
         **kwargs,
     )
 
