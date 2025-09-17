@@ -612,16 +612,18 @@ def main(argv=None):
             name="nan_logger",
         )
 
-    if meta_arch == "MultiDistillationMetaArch":
-        raise NotImplementedError("MultiDistillation not Implemented for 3d")
 
     meta_arch = {
         "SSLMetaArch": SSLMetaArch_3d, # XXX we maybe want to make this a different arg, ie "SSLMetaArch_3d": SSLMetaArch_3d
         "MultiDistillationMetaArch": MultiDistillationMetaArch,
     }.get(cfg.MODEL.META_ARCHITECTURE, None) # why did they do this lol
 
+    if meta_arch == "MultiDistillationMetaArch":
+        raise NotImplementedError("MultiDistillation not Implemented for 3d")
+
     if meta_arch is None:
         raise ValueError(f"Unknown MODEL.META_ARCHITECTURE {cfg.MODEL.META_ARCHITECTURE}")
+
     logger.info(f"Making meta arch {meta_arch.__name__}")
     with torch.device("meta"):
         model = meta_arch(cfg)
