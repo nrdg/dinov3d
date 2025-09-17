@@ -34,7 +34,7 @@ logger = logging.getLogger("dinov3")
 class DataAugmentation3d(object):
     def __init__(
         self,
-        keys: list[str],
+        keys: list[str] = ["image"],
         global_crops_scale,
         local_crops_scale,
         local_crops_number,

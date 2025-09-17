@@ -741,10 +741,10 @@ class SSLMetaArch_3d(nn.Module):
     def build_data_augmentation_dino(self, cfg):
         # XXX
         return DataAugmentationDINO_3d(
-            keys=["image"], # figure out how to pass this arg through XXX
             cfg.crops.global_crops_scale,
             cfg.crops.local_crops_scale,
             cfg.crops.local_crops_number,
+            keys=["image"], # figure out how to pass this arg through XXX
             global_crops_size=cfg.crops.global_crops_size,
             local_crops_size=cfg.crops.local_crops_size,
             gram_teacher_crops_size=cfg.crops.gram_teacher_crops_size,
