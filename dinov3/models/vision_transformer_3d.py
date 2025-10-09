@@ -338,6 +338,9 @@ def vit3d_small(patch_size=16, **kwargs):
         **kwargs,
     )
 
+    return model
+
+
 def vit3d_base(patch_size=16, **kwargs):
     model = DinoVisionTransformer3d(
         patch_size=patch_size,
@@ -347,6 +350,9 @@ def vit3d_base(patch_size=16, **kwargs):
         ffn_ratio=4,
         **kwargs,
     )
+
+    return model
+
 
 def vit3d_large(patch_size=16, **kwargs):
     model = DinoVisionTransformer3d(
@@ -358,6 +364,9 @@ def vit3d_large(patch_size=16, **kwargs):
         **kwargs,
     )
 
+    return model
+
+
 def vit3d_huge2(patch_size=16, **kwargs):
     model = DinoVisionTransformer3d(
         patch_size=patch_size,
@@ -368,3 +377,4 @@ def vit3d_huge2(patch_size=16, **kwargs):
         **kwargs,
     )
 
+    return model
