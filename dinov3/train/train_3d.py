@@ -320,7 +320,7 @@ def build_data_loader_from_cfg(
 
     dataset = PersistentDataset(dataset,
                                 cache_dir=None,
-                                transform=model.build_data_augmentation_dino_3d(cfg)
+                                transform=model.build_data_augmentation_dino(cfg)
                                 ) #this probably needs to be updated
 
     if isinstance(dataset, torch.utils.data.IterableDataset):
