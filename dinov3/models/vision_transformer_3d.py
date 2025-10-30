@@ -46,7 +46,7 @@ def init_weights_vit(module: nn.Module, name: str = ""):
         module.reset_parameters()
     if isinstance(module, LayerScale):
         module.reset_parameters()
-    if isinstance(module, PatchEmbed):
+    if isinstance(module, PatchEmbed3d):
         module.reset_parameters()
     if isinstance(module, RMSNorm):
         module.reset_parameters()

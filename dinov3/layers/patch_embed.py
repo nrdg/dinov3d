@@ -163,7 +163,7 @@ class PatchEmbed3d(nn.Module):
         return flops
 
     def reset_parameters(self):
-        k = 1 / (self.in_chans * (self.patch_size[0] * self.patch_size[1], self.patch_size[2])) # I think this is the right way to modify this for 3d
+        k = 1 / (self.in_chans * (self.patch_size[0] * self.patch_size[1] * self.patch_size[2])) # I think this is the right way to modify this for 3d
         nn.init.uniform_(self.proj.weight, -math.sqrt(k), math.sqrt(k))
         if self.proj.bias is not None:
             nn.init.uniform_(self.proj.bias, -math.sqrt(k), math.sqrt(k))
