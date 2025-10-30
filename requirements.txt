@@ -7,3 +7,4 @@ termcolor
 torch
 torchmetrics
 torchvision
+monai==1.3.0
