@@ -5,6 +5,7 @@
 
 from .adapters import DatasetWithEnumeratedTargets
 from .augmentations import DataAugmentationDINO
+from .augmentations_3d import DataAugmentation3d
 from .collate import collate_data_and_cast
 from .loaders import SamplerType, make_data_loader, make_dataset
 from .meta_loaders import CombinedDataLoader
